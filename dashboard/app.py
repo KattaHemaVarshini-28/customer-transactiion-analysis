@@ -2,19 +2,14 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 
-# ---------------------------------
 # Page Config
-# ---------------------------------
-
 st.set_page_config(
     page_title="SBI Transaction Dashboard",
     layout="wide"
 )
 
-# ---------------------------------
-# Load Dataset
-# ---------------------------------
 
+# Load Dataset
 df = pd.read_csv(
     "data/processed/cleaned_transactions.csv"
 )
@@ -30,10 +25,8 @@ df.columns = [
     "Status"
 ]
 
-# ---------------------------------
-# Sidebar
-# ---------------------------------
 
+# Sidebar
 st.sidebar.title("Filters")
 
 service_filter = st.sidebar.multiselect(
@@ -54,18 +47,11 @@ filtered_df = df[
     (df["Status"].isin(status_filter))
 ]
 
-# ---------------------------------
 # Title
-# ---------------------------------
-
 st.title("🏦 SBI Customer Transaction Analysis Dashboard")
-
 st.markdown("---")
 
-# ---------------------------------
 # Metrics
-# ---------------------------------
-
 total_transactions = filtered_df.shape[0]
 
 total_amount = filtered_df["Amount"].sum()
@@ -98,10 +84,7 @@ col4.metric(
 
 st.markdown("---")
 
-# ---------------------------------
 # Charts Row 1
-# ---------------------------------
-
 col1, col2 = st.columns(2)
 
 # Transaction Type Chart
@@ -153,10 +136,7 @@ col2.plotly_chart(
     use_container_width=True
 )
 
-# ---------------------------------
 # Charts Row 2
-# ---------------------------------
-
 col3, col4 = st.columns(2)
 
 # Amount Distribution
@@ -195,18 +175,11 @@ col4.plotly_chart(
 
 st.markdown("---")
 
-# ---------------------------------
 # Dataset Preview
-# ---------------------------------
-
 st.subheader("Dataset Preview")
-
 st.dataframe(filtered_df)
 
-# ---------------------------------
 # Download Button
-# ---------------------------------
-
 csv = filtered_df.to_csv(index=False)
 
 st.download_button(

@@ -18,10 +18,7 @@ df.columns = [
     "Status"
 ]
 
-# -----------------------------
 # Transaction Type Chart
-# -----------------------------
-
 plt.figure(figsize=(8,5))
 
 sns.countplot(
@@ -41,10 +38,8 @@ plt.savefig(
 
 plt.show()
 
-# -----------------------------
-# Status Pie Chart
-# -----------------------------
 
+# Status Pie Chart
 df["Status"].value_counts().plot(
     kind="pie",
     autopct="%1.1f%%"
@@ -60,10 +55,8 @@ plt.savefig(
 
 plt.show()
 
-# -----------------------------
-# Amount Distribution
-# -----------------------------
 
+# Amount Distribution
 plt.figure(figsize=(8,5))
 
 sns.histplot(
